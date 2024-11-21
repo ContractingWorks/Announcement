@@ -3,7 +3,10 @@
 > Updates on model and API changes.
 
 ## 2024-11-20: Model Update
-> No implementation date set yet.
+
+### Release dates 
+> extest: 2024-11-21
+> prod:  2024-11-27
 
 ### Upcoming Model Change:
 1. `Address.MunicipalityNumber` (int) will be replaced by `Address.MunicipalityCode` (string).
