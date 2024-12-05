@@ -66,6 +66,7 @@ The cumulative effect was that address syncs expected to complete during the wee
 All address related syncs are now completed, and sync times are back to normal.
 
 
+
 ## 2024-11-21: BNXT invoice reference changed
 
 > We have switched from using the field `InvoiceReference` to `CustomerOrSupplierOrderNo` in BNXT
