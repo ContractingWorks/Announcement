@@ -13,6 +13,33 @@ If this occurs, a more detailed description is added below.
 | Visma Payroll               | VPAY       | OK     |
 
 
+## 2024-11-27: Incorrectly re-opened assignments caused sync delays
+
+> Nightly maintenance processed service lines migrated from Visma Contracting in the beginning of 2024.
+> This processing caused a lot of migrated assignments to incorrectly be re-opened.
+
+### Details
+We added automated nightly fixes to postprocessing of service lines: If for some reason 
+a new service line was not properly postprocessed as part of the initial save operation,
+the postprocessing will be performed during the nightly maintenance.
+
+Unfortunately, for Visma Contracting clients migrated in the period 2024-01-02 - 2024-02-29 the flag indicating
+postprocessing of a service line is completed was not set as part of the migration. The migrated service lines
+were therefore picked up and "fixed" by the new mechanism. In all, 17 clients were affected by this issue.
+
+When a new service lines is postprocessed, this is triggers an automatic opening of the assignment the service
+belongs to. A lot of old assignments were therefore re-opened by this.
+
+We restored the affected assignments and service lines to their correct state using the history tracking on the
+tables to identify affected rows, re-closing the affected assignments.
+
+Because some of the affected rows had been synced to other systems after the assignments were re-opened,
+it was necessary to let the integrations sync corrections as well, causing a lot of correction syncs to 
+be performed during normal working hours. For the end users, this effectively caused syncs to be slower than usual.
+
+All address related syncs are now completed, and sync times are back to normal.
+ 
+
 
 ## 2024-11-23: Address structure updates caused sync delays
 
