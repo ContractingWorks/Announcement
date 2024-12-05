@@ -37,7 +37,7 @@ Because some of the affected rows had been synced to other systems after the ass
 it was necessary to let the integrations sync corrections as well, causing a lot of correction syncs to 
 be performed during normal working hours. For the end users, this effectively caused syncs to be slower than usual.
 
-All address related syncs are now completed, and sync times are back to normal.
+All related syncs are now completed, and sync times are back to normal.
  
 
 
