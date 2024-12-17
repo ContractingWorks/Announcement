@@ -5,13 +5,16 @@ If this occurs, a more detailed description is added below.
 
 | System                      | Short name | Status |
 |-----------------------------|------------|--------|
-| SpeedyCraft                 | SC         | OK     |
+| SpeedyCraft                 | SC         | Performance update pending |
 | PowerOffice GO              | POG        | OK     |
 | UNI Economy                 | UNI        | OK     |
 | Visma Business NXT          | BNXT       | OK     |
 | Visma Finacials / Visma.Net | VNET       | OK     |
 | Visma Payroll               | VPAY       | OK     |
 
+## 2024-12-17: Scheduled SpeedyCraft performance improvement
+SpeedyCraft is in the process of deploying a dedicated API node for CW usage, which should improve SC sync times and improve stability. 
+We will test the effect of using the new node sometime tomorrow.
 
 ## 2024-11-27: Incorrectly re-opened assignments caused sync delays
 
