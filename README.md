@@ -10,7 +10,7 @@ Support for `Address.PostalNumber` is planned removed:
 | Environment | Date       |
 |-------------|------------|
 | Extest      | 2025-01-05 |
-| Prod        | 2024-01-07 |
+| Prod        | 2025-01-07 |
 
 Note: Because we see the PostalNumber field is still in use from time to time, we have postponed this update
 until january 2025.
