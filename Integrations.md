@@ -12,6 +12,15 @@ If this occurs, a more detailed description is added below.
 | Visma Finacials / Visma.Net | VNET       | OK     |
 | Visma Payroll               | VPAY       | OK     |
 
+## 2024-12-19: CW API performance improvement
+We have deployed a dedicated API node for use by our internal integrations, similar to what SpeedyCraft did earlier.
+This gives us better CW API performance for our integrations, improving average sync times. 
+
+The most important effect is however that we see a reduction in the occasional slow API responses,
+which we observed in periods with significant load on the API. 
+
+Integrations syncs complete faster, and the CW frontend is a bit more snappy now.
+
 ## 2024-12-17: SpeedyCraft performance improvement
 __Updated 22:30__: SpeedyCraft has deployed a dedicated API node for CW usage, which should improve SC sync times and improve stability. 
 We are monitoring the integration closely to evaluate the effect of the update. It looks really promising so far!
