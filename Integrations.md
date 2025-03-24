@@ -12,6 +12,15 @@ If this occurs, a more detailed description is added below.
 | Visma Finacials / Visma.Net | VNET       | OK     |
 | Visma Payroll               | VPAY       | OK     |
 
+## 2025-03-24: Increased integration parallelism
+As the number of of clients handled by the integrations have improved, we noticed resource usage on our integration services was starting
+to be high. We have doubled the number of integration services running, as well as scaled up available memory for the integration services.
+This was a planned scaling operation, and we had prepared for it well in advance.
+
+We are seeing reduced queue times for integrations, as well as a reduction in some recoverable error types related to network resources.
+In effect, our internal integrations are now faster, in particular in periods with a lot of client activity.
+
+
 ## 2024-12-19: CW API performance improvement
 We have deployed a dedicated API node for use by our internal integrations, similar to what SpeedyCraft did earlier.
 This gives us better CW API performance for our integrations, improving average sync times. 
