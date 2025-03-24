@@ -13,7 +13,7 @@ If this occurs, a more detailed description is added below.
 | Visma Payroll               | VPAY       | OK     |
 
 ## 2025-03-24: Increased integration parallelism
-As the number of of clients handled by the integrations have improved, we noticed resource usage on our integration services was starting
+As the number of of clients handled by the integrations have increased, we noticed resource usage on our integration services was starting
 to be high. We have doubled the number of integration services running, as well as scaled up available memory for the integration services.
 This was a planned scaling operation, and we had prepared for it well in advance.
 
