@@ -2,6 +2,31 @@
 
 > Updates on model and API changes.
 
+## 2025-08-15: Stricter write authorization
+
+### Upcoming API Change
+We are tightening write-authorization checks. After the next release, write operations require explicit permission at the table and column level. Requests that previously succeeded due to permissive checks may now fail.
+
+### Impacts of the Change
+1. Increased authorization errors for write requests when the authenticated user lacks permission for the target table or any included column.
+2. Read operations are unaffected.
+
+Example error:
+```
+Write authorization failed for user 'integration-sc@contracting.works' on table 'Storage'
+```
+You may also see errors that include a specific column name.
+
+### Recommended Action
+- Review the permissions/roles of users that perform writes.
+- Ensure write permission on every table and column included in your payloads.
+- If errors occur, remove unauthorized fields from the payload or request appropriate permissions.
+- Contact support and include the failing user, table, and (if applicable) column from the error.
+
+### Notes
+- Retries will not resolve authorization failures; a permission update or payload change is required.
+
+
 ## 2024-11-25: Further Model Update to Address
 
 ### Release Dates
