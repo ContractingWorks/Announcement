@@ -2,6 +2,11 @@
 
 > Updates on model and API changes.
 
+## 2025-08-22: Removed unused endpoints
+We are removing the *GetNotSynced* endpoints from most entities in the ClientAPI, as they were not in use by our integrations.
+We are not aware of any external parties using the endpoints, they will therefore be removed as part of a regular release this month.
+Please let us know if you rely on the endpoints for anything!
+
 ## 2025-08-15: Stricter write authorization
 
 ### Upcoming API Change
