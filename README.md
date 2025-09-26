@@ -2,6 +2,13 @@
 
 > Updates on model and API changes.
 
+## 2025-09-26: Removing Sys_RowState from the write API
+The use of Sys_Rowstate has evolved since our first versions of the API, and this field is currently not intended to be set by integrations, or indeed reacted to in any way by integrations.
+It is used internally in CW to manage showing errors for end-users in the user interface. It can still be read by the GraphQL endpoint, but will no longer be returned after an upsert. 
+Similarly, the field will not be part of webhook events.
+
+The change will be released to production in week 41 (next week).
+
 ## 2025-08-22: Removed unused endpoints
 We are removing the *GetNotSynced* endpoints from most entities in the ClientAPI, as they were not in use by our integrations.
 We are not aware of any external parties using the endpoints, they will therefore be removed as part of a regular release this month.
