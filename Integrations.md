@@ -13,7 +13,8 @@ If this occurs, a more detailed description is added below.
 | Visma Payroll               | VPAY       | OK     |
 | Visma Expense               | VEXP       | OK     |
 
-# 2025-10-29: Disruptions in Azure services
+
+## 2025-10-29: Disruptions in Azure services
 Azure had global problems with their DNS / FrontDoor Service, impacting all Contracting.Works services and integrations.
 The issue is resolved, and all services are running normally.
 
