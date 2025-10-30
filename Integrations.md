@@ -5,17 +5,20 @@ If this occurs, a more detailed description is added below.
 
 | System                      | Short name | Status |
 |-----------------------------|------------|--------|
-| SpeedyCraft                 | SC         | DOWN     |
-| SpeedyCraft                 | SC         | DOWN     |
-| PowerOffice GO              | POG        | DOWN     |
-| UNI Economy                 | UNI        | DOWN     |
-| Visma Business NXT          | BNXT       | DOWN     |
-| Visma Finacials / Visma.Net | VNET       | DOWN     |
-| Visma Payroll               | VPAY       | DOWN     |
+| SpeedyCraft                 | SC         | OK     |
+| PowerOffice GO              | POG        | OK     |
+| UNI Economy                 | UNI        | OK     |
+| Visma Business NXT          | BNXT       | OK     |
+| Visma Finacials / Visma.Net | VNET       | OK     |
+| Visma Payroll               | VPAY       | OK     |
+| Visma Expense               | VEXP       | OK     |
 
-# 2025-10-29: Disruptions in Azure DNS
-Azure is currently having global problems with their DNS Service, impacting all Contracting.Works services and integrations.
-We expect all services to be back online once Microsoft solves the issue.
+# 2025-10-29: Disruptions in Azure services
+Azure had global problems with their DNS / FrontDoor Service, impacting all Contracting.Works services and integrations.
+The issue is resolved, and all services are running normally.
+
+The problems started approximately 16:00 and were fully resolved sometime during the night.
+
 
 ## 2025-03-24: Increased integration parallelism
 As the number of of clients handled by the integrations have increased, we noticed resource usage on our integration services was starting
