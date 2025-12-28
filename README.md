@@ -2,6 +2,15 @@
 
 > Updates on model and API changes.
 
+## 2025-12-29: Switching SystemMessage and IntegrationStatus to use Enum_EntityID instead of TableName
+Row state messages are generally handled through SystemMessage and IntegrationStatus. Today, this should only be in use by the CW backend and CW internal integrations, so the update will be deployed once the changes pass internal testing. 
+The purpose of the change is to improve performance and ensure data quality on system messages.
+
+In addition, we are preparing for 3rd party intgrations to be able to use our integration status message system, and we have exposed a cleanup method for use with all integrations (internal and external) to reset old integration status messages.
+For now, please contact the CW dev team if you wish to use the integration status messages for your integration.
+
+The change will be released to production this week or the first week of 2026.
+
 ## 2025-09-26: Removing Sys_RowState from the write API
 The use of Sys_Rowstate has evolved since our first versions of the API, and this field is currently not intended to be set by integrations, or indeed reacted to in any way by integrations.
 It is used internally in CW to manage showing errors for end-users in the user interface. It can still be read by the GraphQL endpoint, but will no longer be returned after an upsert. 
