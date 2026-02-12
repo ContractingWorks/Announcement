@@ -2,6 +2,14 @@
 
 > Updates on model and API changes.
 
+## 2026-02-12: Breaking change on Service time registration
+The fields StartDateTimeUTC and EndDateTimeUTC have been used for storing local time zone data, often without the time component in practice. The fields will be replaced with three new fields representing this more clearly:
+ServiceDate, ServiceTimeStart and ServiceTimeEnd.
+
+EndDateTimeUTC has never been used in our frontend or integrations, and currently contain NULL values only in practice.
+The old fields will be removed in the beginning of March 2026.
+
+
 ## 2025-12-29: Switching SystemMessage and IntegrationStatus to use Enum_EntityID instead of TableName
 Row state messages are generally handled through SystemMessage and IntegrationStatus. Today, this should only be in use by the CW backend and CW internal integrations, so the update will be deployed once the changes pass internal testing. 
 The purpose of the change is to improve performance and ensure data quality on system messages.
