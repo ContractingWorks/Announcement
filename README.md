@@ -2,9 +2,22 @@
 
 > Updates on model and API changes.
 
+## 2026-02-13: Breaking change on date fields
+We have been using the DateTime data type for handling dates in the API so far. This has several disadvantages, in particular handling time zone adjustments causes a lot of workarounds in integration code.
+When working with the change on Service time registration, we decided to switch the data type from DateTime to DateOnly in our APIs for date fields.
+
+This means: For upsert operations, date fields no longer accept a time or time zone component, and must follow the format YYYY-MM-DD
+Similarly, when reading date fields through GraphQL, they will be returned on the format YYYY-MM-DD
+
+Two date fields on WagePeriod incorrectly have the suffix UTC, and will be renamed as part of this change: StartDateUTC to StartDate and EndDateUTC to EndDate.
+
+This change will be deployed to our ExTest environment early next week, probably Tuesday morning. Please test your integrations to ensure they remain functional after the change.
+
 ## 2026-02-12: Breaking change on Service time registration
 The fields StartDateTimeUTC and EndDateTimeUTC have been used for storing local time zone data, often without the time component in practice. The fields will be replaced with three new fields representing this more clearly:
 ServiceDate, ServiceTimeStart and ServiceTimeEnd.
+
+**Update 2026-02-13**: The field Calc_StartDateLocal is now redundant on Service, and will be removed. Please use the ServiceDate field instead.
 
 EndDateTimeUTC has never been used in our frontend or integrations, and currently contain NULL values only in practice.
 The old fields will be removed in the beginning of March 2026.
@@ -54,61 +67,3 @@ You may also see errors that include a specific column name.
 
 ### Notes
 - Retries will not resolve authorization failures; a permission update or payload change is required.
-
-
-## 2024-11-25: Further Model Update to Address
-
-### Release Dates
-Support for `Address.PostalNumber` is planned removed:
-
-| Environment | Date       |
-|-------------|------------|
-| Extest      | 2025-01-05 |
-| Prod        | 2025-01-07 |
-
-Note: Because we see the PostalNumber field is still in use from time to time, we have postponed this update
-until january 2025.
-
-### Upcoming Model Change:
-`Address.PostalNumber` (string) has been replaced by `Address.PostalCode` (string).
-The old field `Address.PostalNumber` is retained for backwards compatibility,
-and is currently kept in sync with the new field.
-
-This is temporary, and the old `Address.PostalNumber` field should no longer be used.
-Please switch your references from PostalNumber to PostalCode as soon as possible.
-
-This change affects both the Contracting Works GraphQL and REST APIs.
-
-### Impacts of the Change:
-1. **GraphQL API**: Queries for `postalNumber` will result in errors.
-2. **REST API**: Updates to `PostalNumber` will be ignored, as the field will no longer exist in the model.
-
-### Recommended Action:
-Update your code to use `PostalCode` instead of `PostalNumber` immediately.
-We would appreciate it if you let us know through Contracting.Works Teams when the change is done.
-
-
-
-## 2024-11-20: Model Update to Address
-### Release Dates
-These are our planned release dates for this model update:
-
-| Environment | Date       |
-|-------------|------------|
-| Extest      | 2024-11-21 |
-| Prod        | 2024-11-27 |
-
-### Upcoming Model Change:
-1. `Address.MunicipalityNumber` (int) will be replaced by `Address.MunicipalityCode` (string).
-
-This change affects both the Contracting Works GraphQL and REST APIs.
-
-### Impacts of the Change:
-1. **GraphQL API**: Queries for `municipalityNumber` will result in errors.
-2. **REST API**: Updates to `municipalityNumber` will be ignored, as the field will no longer exist in the model.
-
-### Recommended Action:
-Update your code to use `municipalityCode` instead of `municipalityNumber`.
-> **Note:** The field type is changing from `int` to `string`.
-
-We recommend testing your integration thoroughly to ensure compatibility once the change is implemented.
