@@ -10,6 +10,7 @@ This means: For upsert operations, date fields no longer accept a time or time z
 Similarly, when reading date fields through GraphQL, they will be returned on the format YYYY-MM-DD
 
 Two date fields on WagePeriod incorrectly have the suffix UTC, and will be renamed as part of this change: StartDateUTC to StartDate and EndDateUTC to EndDate.
+
 **Update 2026-02-16**: StartDate and EndDate on Project also incorrectly has the UTC suffix, and will be renamed as part of the release.
 
 This change will be deployed to our ExTest environment early next week, probably Tuesday morning. Please test your integrations to ensure they remain functional after the change.
