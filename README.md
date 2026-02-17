@@ -2,27 +2,27 @@
 
 > Updates on model and API changes.
 
-## 2026-02-13: Breaking change on date fields
+## 2026-02-17: Breaking changes
+We need to change the schedule for earlier announced breaking changes a bit, as we need to let the type update run a bit longer in our internal test environment. The previous announcements are removed to avoid confusion, and the updated schedule is summarized here.
+
+**Release 2026_08 (week 8)**
+Date fields which have been misnamed (they incorrectly had the suffix "UTC") will be renamed. The following fields are affected:
+Project: `StartDate`, `EndDate` and `WarrantyDate`
+WagePeriod: `StartDate` and `EndDate`
+
+In addition: 
+On Service, we are adding the fields `ServiceDate`, `ServiceTimeStart` and `ServiceTimeEnd`, which replaces `StartDateTimeUTC`, `EndDateTimeUTC` and `Calc_StartDateLocal` on Service. The old fields will be removed in release 2026_10 (see below).
+
+**Release 2026_09 (week 9)**
 We have been using the DateTime data type for handling dates in the API so far. This has several disadvantages, in particular handling time zone adjustments causes a lot of workarounds in integration code.
-When working with the change on Service time registration, we decided to switch the data type from DateTime to DateOnly in our APIs for date fields.
+When working with the change on Service time registration, we decided to switch the data type from **DateTime** to **DateOnly** in our APIs for date fields.
 
 This means: For upsert operations, date fields no longer accept a time or time zone component, and must follow the format YYYY-MM-DD
 Similarly, when reading date fields through GraphQL, they will be returned on the format YYYY-MM-DD
 
-Two date fields on WagePeriod incorrectly have the suffix UTC, and will be renamed as part of this change: StartDateUTC to StartDate and EndDateUTC to EndDate.
-
-**Update 2026-02-16**: StartDate, EndDate and WarrantyDate on Project also incorrectly has the UTC suffix, and will be renamed as part of the release.
-
-This change will be deployed to our ExTest environment early next week, probably Tuesday morning. Please test your integrations to ensure they remain functional after the change.
-
-## 2026-02-12: Breaking change on Service time registration
-The fields StartDateTimeUTC and EndDateTimeUTC have been used for storing local time zone data, often without the time component in practice. The fields will be replaced with three new fields representing this more clearly:
-ServiceDate, ServiceTimeStart and ServiceTimeEnd.
-
-**Update 2026-02-13**: The field Calc_StartDateLocal is now redundant on Service, and will be removed. Please use the ServiceDate field instead.
-
-EndDateTimeUTC has never been used in our frontend or integrations, and currently contain NULL values only in practice.
-The old fields will be removed in the beginning of March 2026.
+**Release 2026_10 (week 10)**
+On Service, we are removing the old fields `StartDateTimeUTC`, `EndDateTimeUTC` and `Calc_StartDateLocal`.
+On Address, we are removing the old field `PostalNumber`. Use `PostalCode` instead.
 
 
 ## 2025-12-29: Switching SystemMessage and IntegrationStatus to use Enum_EntityID instead of TableName
