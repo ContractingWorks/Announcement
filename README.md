@@ -5,31 +5,36 @@
 ## 2026-02-17: Breaking changes
 We need to change the schedule for earlier announced breaking changes a bit, as we need to let the type update run a bit longer in our internal test environment. The previous announcements are removed to avoid confusion, and the updated schedule is summarized here. 
 
-**Release 2026_08 (week 8)**  
+### Release 2026_08 (week 8)
 Date fields which have been misnamed (they incorrectly had the suffix "UTC") will be renamed. The following fields are affected:  
 Project: `StartDate`, `EndDate` and `WarrantyDate`  
 WagePeriod: `StartDate` and `EndDate`  
+
 **UPDATE 2026-02-18** We are keeping a read-only copy of the UTC version of the fields above until release 2026_10, when they will be removed. They will exist in parallell with the new field names, so please switch to the updated names as soon as possible.  
 
 In addition:  
 On Service, we are adding the fields `ServiceDate`, `ServiceTimeStart` and `ServiceTimeEnd`, which replaces `StartDateTimeUTC`, `EndDateTimeUTC` and `Calc_StartDateLocal` on Service. The old fields will be removed in release 2026_10 (see below).  
 
-**Release 2026_09 (week 9)**  
+### Release 2026_09 (week 9)
 We have been using the DateTime data type for handling dates in the API so far. This has several disadvantages, in particular handling time zone adjustments causes a lot of workarounds in integration code.  
 When working with the change on Service time registration, we decided to switch the data type from **DateTime** to **DateOnly** in our APIs for date fields.  
 
 This means: For upsert operations, date fields no longer accept a time or time zone component, and must follow the format YYYY-MM-DD  
-Similarly, when reading date fields through GraphQL, they will be returned on the format YYYY-MM-DD
+Similarly, when reading date fields through GraphQL, they will be returned on the format YYYY-MM-DD  
+
 **UPDATE 2026-02-18**  
 The date fields were correctly typed as date in the GraphQL schema, so for read operations there will be no change. Also, we will temporarily be relaxing input constraints on the DateOnly fields in the REST API, to accept but ignore any time part of the input date string.  
+  
 This will be changed back to a DateOnly standard input for performance and quality reasons in release 2026_10. The date fields in production today already support input on the ISO 8601 format YYYY-MM-DD, and all integrators are encouraged to ensure that the input format is correct now.
 
-**Release 2026_10 (week 10)**  
+### Release 2026_10 (week 10)
 On Service, we are removing the old fields `StartDateTimeUTC`, `EndDateTimeUTC` and `Calc_StartDateLocal`.  
 On Address, we are removing the old field `PostalNumber`. Use `PostalCode` instead.  
+
 **UPDATE 2026-02-18**  
 On WagePeriod, we are removing the temporary read-only fields `StartDateUTC` and `EndDateUTC`  
 On Project, we are removing the temporary read-only fields `StartDateUTC`, `EndDateUTC` and `WarrantyDateUTC`  
+The input validation relaxation for DateOnly fields in the REST API will be removed, and DateOnly fields will be validated normally.
 
 
 ## 2025-12-29: Switching SystemMessage and IntegrationStatus to use Enum_EntityID instead of TableName
