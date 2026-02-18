@@ -19,7 +19,10 @@ We have been using the DateTime data type for handling dates in the API so far. 
 When working with the change on Service time registration, we decided to switch the data type from **DateTime** to **DateOnly** in our APIs for date fields.  
 
 This means: For upsert operations, date fields no longer accept a time or time zone component, and must follow the format YYYY-MM-DD  
-Similarly, when reading date fields through GraphQL, they will be returned on the format YYYY-MM-DD  
+Similarly, when reading date fields through GraphQL, they will be returned on the format YYYY-MM-DD
+**UPDATE 2026-02-18**  
+The date fields were correctly typed as date in the GraphQL schema, so for read operations there will be no change. Also, we will temporarily be relaxing input constraints on the DateOnly fields in the REST API, to accept but ignore any time part of the input date string.  
+This will be changed back to a DateOnly standard input for performance and quality reasons in release 2026_10. The date fields in production today already support input on the ISO 8601 format YYYY-MM-DD, and all integrators are encouraged to ensure that the input format is correct now.
 
 **Release 2026_10 (week 10)**  
 On Service, we are removing the old fields `StartDateTimeUTC`, `EndDateTimeUTC` and `Calc_StartDateLocal`.  
